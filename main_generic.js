@@ -1,5 +1,5 @@
 
- var states = new Set();
+var states = new Set();
 var covidData = new Object();
 const cases = new Map();
 let deaths = new Map();
@@ -86,7 +86,60 @@ function loadData() {
         }
 
 
-     
+        //     var Tooltip = d3.select("#scene1")
+        //         .append("div")
+        //         .style("opacity", 0)
+        //         .attr("class", "tooltip")
+        //         .style("background-color", "white")
+        //         .style("border", "solid")
+        //         .style("border-width", "2px")
+        //         .style("border-radius", "5px")
+        //         .style("padding", "5px");
+
+
+        //     var mousemove = function(d) {
+        //         Tooltip
+        //             .style("opacity", 1)
+        //         d3.select(this).transition
+        //             .style("stroke", "black")
+        //             .style("opacity", 1)
+        //     }
+        //     var mouseover = function(d) {
+        //         Tooltip
+        //             .text("State:" + d.state + "Count" + d.Count + "year" + covidData.year)
+        //             .style("left", (d3.mouse(this)[1]) + "px")
+        //             .style("top", (d3.mouse(this)[0]) + "px")
+        //     }
+
+        //     var mouseleave = function(d) {
+        //         Tooltip
+        //             .style("opacity", 0)
+        //         d3.select(this)
+        //             .style("stroke", "none")
+        //             .style("opacity", 0.8)
+        //     }
+        //     const annotations = [{
+        //         note: {
+        //             label: dMax.state + " recorded maximum cases " + dMax.Count,
+        //             title: "worst hit state",
+        //             align: "left", // try right or left
+        //             wrap: 200, // try something smaller to see text split in several lines
+        //             padding: 10 // More = text lower
+        //         },
+        //         color: ["black"],
+        //         x: xScaleLabels(dMax.state),
+        //         y: yscaleLabels(dMax.count),
+        //         dy: 10,
+        //         dx: 100
+
+        //     }];
+        //     const makeAnnotations = d3.annotation()
+        //         .annotations(annotations);
+
+        //     d3.select("#scene1").select('svg')
+        //         .append("g")
+        //         .call(makeAnnotations);
+
     });
 
 
@@ -146,43 +199,43 @@ function loadChart(data, year, colorCode, dMax) {
         .attr('width', xScaleLabels.bandwidth())
         .attr('height', function(d, i) { return yscaleLabels(d.count) }).attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .attr('fill', colorCode)
-        .on("mouseover", mouseover)
-        .on("mousemove", mousemove)
-        .on("mouseout", mouseleave);
+        .on("mouseover", function(d) {
+            Tooltip2
+                .style("opacity", 0)
+                .text("State:" + d.state + "\n" + getValue('catagory') + ":" + d.count)
+                .attr("class", "tooltip")
+                .attr("width", "100 px")
+                .attr("height", "100px")
+                .style("position", "absolute")
+                .style("background-color", "white")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mousemove", function(d) {
+            Tooltip2
+                .style("opacity", 1)
+            d3.select(this).transition()
+                .style("opacity", 1);
+
+        })
+        .on("mouseleave", function(d) {
+            Tooltip2
+                .style("opacity", 0)
+            d3.select(this)
+                .style("stroke", "none")
+                .style("opacity", 0.8)
+        });
+
+    var Tooltip2 = d3.select("#scene1")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
 
 
 
-    var mousemove = function(d) {
-        // console.log("inside mousemove");
-
-        Tooltip
-            .style("opacity", 1)
-        d3.select(this).transition().duration(200)
-            .style("stroke", "black")
-            .style("opacity", 1)
-    }
-    var mouseover = function(d) {
-        // console.log("inside mouseover");
-        Tooltip.transition()
-            .duration(200)
-            .text("State:" + d.state + "Count" + d.Count + "year" + covidData.year)
-            .style("left", (d3.mouse(this)[1]) + "px")
-            .style("top", (d3.mouse(this)[0]) + "px")
-    }
-
-    var mouseleave = function(d) {
-        Tooltip
-            .style("opacity", 0)
-        d3.select(this).tooltip.transition()
-            .duration(500)
-            .style("opacity", 0)
-            .style("stroke", "none");
-
-    }
-
-    var text = "With " + dMax.count + " cases " + dMax.state + " is the worst hit state with heighest numbers";
-    //console.log(text)
+    var text = "With " + dMax.count + " cases " + dMax.state + " is the state with heighest numbers";
+    console.log(text)
     svg.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
