@@ -8,7 +8,7 @@ var maxdot = 0;
 let maxObj = 0;
 
 function loadScene2(year) {
- d3.csv("https://github.com/usha1639/NarrativeVisualizaton/blob/df5f912b326b93f342963bec444a9caa7619619b/stateLevelScatterPlotData.csv", function(data) {
+    d3.csv("https://raw.githubusercontent.com/usha1639/NarrativeVisualizaton/main/stateLevelScatterPlotData.csv", function(data) {
         //d3.csv("stateLevelScatterPlotData.csv", function(data) {     
         mydata = [];
 
@@ -187,7 +187,7 @@ loadScene2("2020");
 
 function update(aYear) {
     aYear = String(aYear);
-     d3.csv("https://github.com/usha1639/NarrativeVisualizaton/blob/df5f912b326b93f342963bec444a9caa7619619b/stateLevelScatterPlotData.csv", function(data) {
+    d3.csv("https://raw.githubusercontent.com/usha1639/NarrativeVisualizaton/main/stateLevelScatterPlotData.csv", function(data) {
     //d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
 
         var svg = d3.select("#scene2")
