@@ -13,8 +13,8 @@ var deathMax = 0;
 function loadData() {
 
     console.log("init hit");
-    d3.csv('https://github.com/usha1639/NarrativeVisualizaton/blob/main/usStatesCasesDeaths.csv', function(data) {
-        // console.log(data);
+    d3.csv('https://github.com/usha1639/NarrativeVisualizaton/blob/df5f912b326b93f342963bec444a9caa7619619b/usStatesCasesDeaths.csv', function(data) {
+        //d3.csv('usStatesCasesDeaths.csv', function(data) {
         mycasedata = [];
         myDeathsData = [];
         let prevCaseMax = 0;
