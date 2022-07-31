@@ -1,4 +1,5 @@
-var states = new Set();
+
+ var states = new Set();
 var covidData = new Object();
 const cases = new Map();
 let deaths = new Map();
@@ -12,7 +13,7 @@ var deathMax = 0;
 
 function loadData() {
 
-    console.log("init hit");
+    //console.log("init hit");
     d3.csv('https://raw.githubusercontent.com/usha1639/NarrativeVisualizaton/main/usStatesCasesDeaths.csv', function(data) {
         //d3.csv('usStatesCasesDeaths.csv', function(data) {
         mycasedata = [];
@@ -85,60 +86,7 @@ function loadData() {
         }
 
 
-        //     var Tooltip = d3.select("#scene1")
-        //         .append("div")
-        //         .style("opacity", 0)
-        //         .attr("class", "tooltip")
-        //         .style("background-color", "white")
-        //         .style("border", "solid")
-        //         .style("border-width", "2px")
-        //         .style("border-radius", "5px")
-        //         .style("padding", "5px");
-
-
-        //     var mousemove = function(d) {
-        //         Tooltip
-        //             .style("opacity", 1)
-        //         d3.select(this).transition
-        //             .style("stroke", "black")
-        //             .style("opacity", 1)
-        //     }
-        //     var mouseover = function(d) {
-        //         Tooltip
-        //             .text("State:" + d.state + "Count" + d.Count + "year" + covidData.year)
-        //             .style("left", (d3.mouse(this)[1]) + "px")
-        //             .style("top", (d3.mouse(this)[0]) + "px")
-        //     }
-
-        //     var mouseleave = function(d) {
-        //         Tooltip
-        //             .style("opacity", 0)
-        //         d3.select(this)
-        //             .style("stroke", "none")
-        //             .style("opacity", 0.8)
-        //     }
-        //     const annotations = [{
-        //         note: {
-        //             label: dMax.state + " recorded maximum cases " + dMax.Count,
-        //             title: "worst hit state",
-        //             align: "left", // try right or left
-        //             wrap: 200, // try something smaller to see text split in several lines
-        //             padding: 10 // More = text lower
-        //         },
-        //         color: ["black"],
-        //         x: xScaleLabels(dMax.state),
-        //         y: yscaleLabels(dMax.count),
-        //         dy: 10,
-        //         dx: 100
-
-        //     }];
-        //     const makeAnnotations = d3.annotation()
-        //         .annotations(annotations);
-
-        //     d3.select("#scene1").select('svg')
-        //         .append("g")
-        //         .call(makeAnnotations);
-
+     
     });
 
 
@@ -256,7 +204,6 @@ function loadChart(data, year, colorCode, dMax) {
             wrap: 200, // try something smaller to see text split in several lines
             padding: 10 // More = text lower
         },
-        color: ["black"],
         x: xScaleLabels(dMax.state),
         y: yscaleLabels(dMax.count),
         dy: -30,
@@ -331,23 +278,3 @@ function filterChanged(obj) {
     covidData.catagory = getValue('catagory');
     loadData();
 }
-
-// function sortdata() {
-//     console.log("Sort entered ");
-//     sortedarr = myCasesdata.sort((a, b) => d3.descending(a.count, b.count));
-//     // d3.select("#scene1").select('svg')
-//     //   .selectAll("rect")
-//     // .sort((a, b) => d3.ascending(a.count, b.count))
-//     //.attr('x', d => xScaleLabels(d.state));
-//     color = "grey";
-//     if (getValue('catagory') == "cases") {
-//         color = "red";
-//     }
-//     loadChart(sortedarr, getValue('year'), color, sortedarr[0]);
-//     console.log(sortedarr);
-
-
-// }
-/***
- * Scene 2 logics 
- */
