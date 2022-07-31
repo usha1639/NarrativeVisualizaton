@@ -1,4 +1,5 @@
-var margin = { top: 10, right: 0, bottom: 90, left: 50, scatterLeft: 350 },
+
+     var margin = { top: 10, right: 0, bottom: 90, left: 50, scatterLeft: 350 },
     width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
@@ -18,7 +19,7 @@ function loadScene2(year) {
         //d3.csv("stateLevelScatterPlotData.csv", function(data) {     
         mydata = [];
 
-        let annText1 = annotationtexts[getValue('year')];
+        let annText1 = annotationtexts[year];
         console.log(annText1);
         var svg = d3.select("#scene2")
             .select("svg").remove();
@@ -336,3 +337,4 @@ function update(aYear) {
 
     });
 }
+//update("2020");
