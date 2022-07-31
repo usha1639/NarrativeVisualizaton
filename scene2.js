@@ -187,7 +187,8 @@ loadScene2("2020");
 
 function update(aYear) {
     aYear = String(aYear);
-    d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
+     d3.csv("https://github.com/usha1639/NarrativeVisualizaton/blob/df5f912b326b93f342963bec444a9caa7619619b/stateLevelScatterPlotData.csv", function(data) {
+    //d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
 
         var svg = d3.select("#scene2")
             .select("svg").remove();
