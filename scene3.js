@@ -18,7 +18,7 @@ function loadScene3(state) {
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    d3.csv("usCounty2020.csv", function(data) {
+    d3.csv("https://github.com/usha1639/NarrativeVisualizaton/blob/main/usCounty2020.csv", function(data) {
         console.log("read csv for scene3");
         data.forEach(d => {
             d.cases = +d.cases;
