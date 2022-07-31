@@ -97,6 +97,27 @@ function loadScene3(state) {
                     .attr("cx", function(d) { return d.x; })
                     .attr("cy", function(d) { return d.y; })
             });
+        let DV_Annotation_1 = [{
+                note: {
+                    label: "",
+                    title: "Counties with higher number appear bigger, hover on the bubble to see which county reported maximum cases"
+                },
+                subject: {
+                    width: 50,
+                    height: 50
+                },
+                x: 100,
+                y: 300,
+                dy: -150,
+                dx: 100
+            }]
+            // Add annotation to the chart
+        let DV_Annotation_const_1 = d3.annotation()
+            .annotations(DV_Annotation_1)
+        scene3svg
+            .append("g").attr("transform", "translate(" + 80 + "," + -40 + ")")
+
+        .call(DV_Annotation_const_1)
     });
 }
 
