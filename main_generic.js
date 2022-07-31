@@ -181,8 +181,8 @@ function loadChart(data, year, colorCode, dMax) {
 
     }
 
-    var text = "With " + dMax.count + " cases " + dMax.state + " is the state with heighest numbers";
-    console.log(text)
+    var text = "With " + dMax.count + " cases " + dMax.state + " is the worst hit state with heighest numbers";
+    //console.log(text)
     svg.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
