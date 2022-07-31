@@ -1,5 +1,4 @@
-
-     var margin = { top: 10, right: 0, bottom: 90, left: 50, scatterLeft: 350 },
+var margin = { top: 10, right: 0, bottom: 90, left: 50, scatterLeft: 350 },
     width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
