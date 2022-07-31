@@ -8,7 +8,7 @@ var maxdot = 0;
 let maxObj = 0;
 
 function loadScene2(year) {
-    d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
+    d3.csv("https://github.com/usha1639/NarrativeVisualizaton/blob/main/stateLevelScatterPlotData.csv", function(data) {
         mydata = [];
 
 
