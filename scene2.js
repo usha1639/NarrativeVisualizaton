@@ -6,13 +6,20 @@ var covidData = new Object();
 let mydata = [];
 var maxdot = 0;
 let maxObj = 0;
+let annotationtexts = {
+    "2020": "NewYork, New jersey, Cannecticut have seen wosrt death rate, can be seen by the big dots.",
+    "2021": "Small dots show that in 2021 the death rate reduced",
+    "2022": "Small dots show that in 2022 the death rate reduced"
+
+}
 
 function loadScene2(year) {
     d3.csv("https://raw.githubusercontent.com/usha1639/NarrativeVisualizaton/main/stateLevelScatterPlotData.csv", function(data) {
         //d3.csv("stateLevelScatterPlotData.csv", function(data) {     
         mydata = [];
 
-
+        let annText1 = annotationtexts[getValue('year')];
+        console.log(annText1);
         var svg = d3.select("#scene2")
             .select("svg").remove();
         var scene2svg = d3.select("#scene2")
@@ -148,28 +155,27 @@ function loadScene2(year) {
         }
 
 
-        const annotations = [{
-            note: {
-                label: maxObj.state + " reported heighest death rate with " + maxObj.cases + " and " + maxObj.Deaths,
-                title: "worst hit state",
-                align: "left", // try right or left
-                wrap: 200, // try something smaller to see text split in several lines
-                padding: 10 // More = text lower
-            },
-            color: ["black"],
-            x: xScaleLabels(maxObj.state),
-            y: yscaleLabels(dMax.count),
-            dy: -30,
-            dx: 100,
-            type: d3.annotationCalloutElbow
+        let DV_Annotation_1 = [{
+                note: {
+                    label: "",
+                    title: annText1
+                },
+                subject: {
+                    width: 50,
+                    height: 50
+                },
+                x: 100,
+                y: 300,
+                dy: -150,
+                dx: 100
+            }]
+            // Add annotation to the chart
+        let DV_Annotation_const_1 = d3.annotation()
+            .annotations(DV_Annotation_1)
+        scene2svg
+            .append("g").attr("transform", "translate(" + 80 + "," + -40 + ")")
 
-        }]
-        const makeAnnotations = d3.annotation()
-            .annotations(annotations)
-        d3.select("#scene2").select('svg')
-            .append("g").attr("transform", "translate(" + margin.left + "," + -30 + ")")
-
-        .call(makeAnnotations)
+        .call(DV_Annotation_const_1)
 
 
     });
@@ -187,8 +193,10 @@ loadScene2("2020");
 
 function update(aYear) {
     aYear = String(aYear);
+    let annText = annotationtexts[aYear];
+
     d3.csv("https://raw.githubusercontent.com/usha1639/NarrativeVisualizaton/main/stateLevelScatterPlotData.csv", function(data) {
-    //d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
+        //d3.csv("data/stateLevelScatterPlotData.csv", function(data) {
 
         var svg = d3.select("#scene2")
             .select("svg").remove();
@@ -229,7 +237,7 @@ function update(aYear) {
 
         scene2svg.append("g")
             .call(xaxis).attr("transform", "translate(" + 80 + "," + 550 + ")");
-        console.log([0, d3.max(filteredData, d => d.Deaths)]);
+        // console.log([0, d3.max(filteredData, d => d.Deaths)]);
 
         var yScale = d3.scaleLinear()
             .domain([0, d3.max(filteredData, d => d.Deaths)])
@@ -301,30 +309,30 @@ function update(aYear) {
             .style("opacity", 0);
 
 
-        console.log("maxdot" + maxdot);
-        const DV_Annotation_1 = [{
+        //console.log("maxdot" + maxdot);
+        let DV_Annotation_1 = [{
                 note: {
                     label: "",
-                    title: "Girls are Smart:decreasing Absences and better Grades as they Age"
+                    title: annText
                 },
                 subject: {
                     width: 50,
                     height: 50
                 },
-                x: XScale(maxObj.cases),
-                y: yScale(maxObj.Deaths),
-                dy: -200,
+                x: 100,
+                y: 300,
+                dy: -150,
                 dx: 100
             }]
             // Add annotation to the chart
-        const DV_Annotation_const_1 = d3.annotation()
-            //     .annotations(DV_Annotation_1)
-            // scene2svg
-            //     .append("g")
-            //     .call(DV_Annotation_const_1)
+        let DV_Annotation_const_1 = d3.annotation()
+            .annotations(DV_Annotation_1)
+        scene2svg
+            .append("g").attr("transform", "translate(" + 80 + "," + -40 + ")")
+
+        .call(DV_Annotation_const_1)
 
 
 
     });
 }
-//update("2020");
